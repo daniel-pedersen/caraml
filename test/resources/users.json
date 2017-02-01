@@ -1,0 +1,54 @@
+[{
+    "id": 1,
+    "username": "aladdin",
+    "website": "https://un.org/proin/at/turpis/a/pede.xml?dui=morbi&nec=vel&nisi=lectus&volutpat=in&eleifend=quam&donec=fringilla&ut=rhoncus&dolor=mauris&morbi=enim&vel=leo&lectus=rhoncus&in=sed&quam=vestibulum&fringilla=sit&rhoncus=amet&mauris=cursus&enim=id&leo=turpis&rhoncus=integer&sed=aliquet&vestibulum=massa",
+    "isAdmin": true,
+    "profilePicture": null,
+    "messages": [
+      [{
+          "id": 1,
+          "messageType": "Attachment",
+          "sent": "2016-02-19T10:47:13Z",
+          "data": "http://dummyimage.com/174x104.png/ff4444/ffffff"
+        },
+        {
+          "id": 2,
+          "messageType": "Comment",
+          "sent": "2016-12-01T04:17:03Z",
+          "text": "Ṱ̺̺̕o͞ ̷i̲̬͇̪͙n̝̗͕v̟̜̘̦͟o̶̙̰̠kè͚̮̺̪̹̱̤ ̖t̝͕̳̣̻̪͞h̼͓̲̦̳̘̲e͇̣̰̦̬͎ ̢̼̻̱̘h͚͎͙̜̣̲ͅi̦̲̣̰̤v̻͍e̺̭̳̪̰-m̢iͅn̖̺̞̲̯̰d̵̼̟͙̩̼̘̳ ̞̥̱̳̭r̛̗̘e͙p͠r̼̞̻̭̗e̺̠̣͟s̘͇̳͍̝͉e͉̥̯̞̲͚̬͜ǹ̬͎͎̟̖͇̤t͍̬̤͓̼̭͘ͅi̪̱n͠g̴͉ ͏͉ͅc̬̟h͡a̫̻̯͘o̫̟̖͍̙̝͉s̗̦̲.̨̹͈̣"
+        },
+        {
+          "id": 3,
+          "messageType": "Attachment",
+          "sent": "2016-08-06T21:00:41Z",
+          "data": "aHR0cDovL2R1bW15aW1hZ2UuY29tLzIxN3gxMjUuanBnLzVmYTJkZC9mZmZmZmY="
+        }
+      ]
+    ]
+  },
+  {
+    "id": 2,
+    "username": "genie",
+    "website": null,
+    "isAdmin": false,
+    "profilePicture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJ5SURBVDjLpZPNS1RhFMaff2EWLWo5tGnRaqCFRBAM0cZFwVSQpVHNQAWVMQwaSSZWtimLiKnsO5lEjKzs4y1zRK3oItfMj1FnnJkaUtNrjo45H3eejpCKNa5anMX73vs855zfOS9I4n9i2SHbCpvph8q8A9PNcCzcz76EM9EETj+DmmqENaeBiJ3mRyuzQy5mwyVMKqiFbzNN0MxgKZOd2zj5GMZE/ZL5ooHZAntGW89s7Bw5Ws25llWcfQHrzHPYE/51ZOQ0M4Fiitj4UQdbzhZSb+FJ63ZypJqp7p0UsTf+FN6kvoMMl3GmNY9jj+BckcF8/HoFldLzpZIqxhthJPVdkr2cifdb5sXefyAKLFvyzVJJAssisIxstILZ0DEyeJzpHifHfNBGamFZ+C9yC7bhG7BBxCrZZqWQpoiNP6S1TMBFDh4gA0VMdxfy+0NosftQX+8gGKkBY741HLoGhbnXUOZwKTn+gGa4nOlBN9MDxdJzCTmwj+wvEKPDTPUc5Zx+kOk+NxmqZOJTIXsviYGQVgKLAos/n0CbbIAS0ir1eY9kF4O+3UzpBYzehhaugQpdR3DwKth7EeyqEoO/oYzXwyKwDDN0ipme/VKFi0l9L8M3oYW8SwxWnIKI1XT7Vqb6i/ntLoLTHdulhROcUJsZuJJjCsvEPpyf8m8io5U0VB6FtFNIe6da84XFEcYaNrDzLDw5DUZ9cEwqm6zxGWYGPBTShogtQtoerV0rLA5JKy5+ubya7SdzbKKMyRG7ByPeIfvebKfAWszUdQFavKOI0bqNbCuF4XfneAvzIaStQrpOxEpIL746rQKOD2VQbSXwtLiXg/wNTNvAOhsl8oEAAAAASUVORK5CYII=",
+    "messages": [{
+        "id": 4,
+        "messageType": "Poke",
+        "sent": "2016-02-18T03:07:05Z"
+      },
+      {
+        "id": 5,
+        "messageType": "Comment",
+        "sent": "2016-10-22T10:42:22Z",
+        "text": "<script>alert('hi')</script>"
+      },
+      {
+        "id": 6,
+        "messageType": "Attachment",
+        "sent": "2016-07-26T11:49:24Z",
+        "data": "aHR0cDovL2R1bW15aW1hZ2UuY29tLzE5MXgxMzMucG5nL2ZmNDQ0NC9mZmZmZmY="
+      }
+    ]
+  }
+]

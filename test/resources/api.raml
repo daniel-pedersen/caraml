@@ -1,0 +1,196 @@
+#%RAML 1.0
+title: Test API
+version: v1
+baseUri: https://{region}.api.example.com/{version}
+baseUriParameters:
+  region:
+    default: us01
+    type: string
+    pattern: ^\w\w\d\d$
+    minLength: 4
+    maxLength: 4
+mediaType: application/json
+types:
+  User:
+    type: object
+    properties:
+      id: integer
+      username: string
+      website?: URL
+      isAdmin: boolean
+      profilePicture?:
+        type: file
+        fileTypes: image/*
+        maxLength: 32768
+      messages[]?: Message
+  URL:
+    type: string
+    pattern: https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)
+  Message:
+    type: object
+    discriminator: messageType
+    properties:
+      id: integer
+      messageType:
+        enum: [ Poke, Attachment, Comment ]
+      sent: datetime
+  Poke:
+    type: Message
+  Attachment:
+    type: Message
+    properties:
+      data: file | URL
+  Comment:
+    type: Message
+    properties:
+      text: string
+traits:
+  creatable:
+    usage: Use on writeable resource collections under the POST method.
+    responses:
+      201:
+        description: The resource was created and its URI is given in the `Location` header.
+      202:
+        description: The request was received but is processed asynchronously. In the `Location` header is an URI that can be used to get the status of the process.
+      400:
+        description: An error was encountered when handling the request. The response body contains more information about the error.
+      403:
+        description: The client has insufficient priviliges to create resources.
+  readable:
+    usage: Use on readable resources under the GET method.
+    responses:
+      200:
+        description: The request was successful.
+      400:
+        description: An error was encountered when handling the request. The response body contains more information about the error.
+      403:
+        description: The user has insufficient priviliges to read the resource.
+      404:
+        description: The resource was not found.
+  updatable:
+    usage: Use on writable resources under the PUT method.
+    responses:
+      200:
+        description: The resource was successfully updated.
+      400:
+        description: An error was encountered when handling the request. The response body contains more information about the error.
+      403:
+        description: The client had insufficient priviliges to modify the resource.
+      404:
+        description: The resource was not found.
+  patchable:
+    usage: Use on writable resources under the PATCH method.
+    responses:
+      200:
+        description: The resource was successfully patched.
+      400:
+        description: An error was encountered when handling the request. The response body contains more information about the error.
+      403:
+        description: The client had insufficient priviliges to modify the resource.
+      404:
+        description: The resource was not found.
+  deletable:
+    usage: Use on removable resources under the DELETE method.
+    responses:
+      204:
+        description: The resource was successfully deleted, either due to this request or to any previous request.
+      400:
+        description: An error was encountered when handling the request. The response body contains more information about the error.
+      403:
+        description: The client has insufficient priviliges to delete the resource.
+      404:
+        description: The resource was not found.
+  paged:
+    queryParameters:
+      page:
+        description: Return only the corresponding page number, page size regulated by `page_size`.
+        default: 0
+        minimum: 0
+        type: integer
+      page_size:
+        description: Paginate <<resourcePathName>> into pages with `page_size` entries each.
+        default: 64
+        minimum: 1
+        type: integer
+  field_adressable:
+    queryParameters:
+      fields:
+        description: Selection of fields to return
+        type: string[]
+resourceTypes:
+  collection:
+    usage: Used for any collection of objects
+    description: Collection of all <<resourcePathName>>
+    get:
+      description: Get all <<resourcePathName>>
+      is: [readable, paged]
+      responses:
+        200:
+          body:
+            type:
+              type: array
+              items: <<itemType>>
+    post:
+      description: Create a new <<resourcePathName | !singularize>>
+      is: [creatable]
+      body:
+        type: <<itemType>>
+  item:
+    usage: Used as the unit type for collections
+    get:
+      description: Get the <<resourcePathName | !singularize>>
+      is: [readable]
+      responses:
+        200:
+          body: <<itemType>>
+    put:
+      description: Update the <<resourcePathName | !singularize>>
+      is: [updatable]
+    patch:
+      description: Patch the <<resourcePathName | !singularize>>
+      is: [patchable]
+    delete:
+      description: Delete the <<resourcePathName | !singularize>>
+      is: [deletable]
+/users:
+  type: collection
+  itemType: User
+  /{id}:
+    type: item
+    itemType: User
+    uriParameters:
+      id:
+        type: integer
+        minimum: 1
+    /messages:
+      type: collection
+      itemType: Message
+      /{id}:
+        type: item
+        itemType: Message
+        uriParameters:
+          id:
+            type: integer
+            minimum: 1
+        /attachment:
+          post:
+            is: [creatable]
+            body:
+              type: file
+  /{username}:
+    type: item
+    itemType: User
+    uriParameters:
+      username:
+        type: string
+        minLength: 1
+    /get:
+      is: [readable]
+      get:
+        responses:
+          200:
+            body: string
+    /extra:
+      type: nil
+/test it:
+  type: nil
