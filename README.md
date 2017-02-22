@@ -18,7 +18,9 @@ const options = {
   // Headers to send with every request unless overridden
   defaultHeaders: {
     Authorization: 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
-  }
+  },
+  // Prefix on resources when naming collisions occur
+  overridePrefix: '$'
 }
 
 const { resources } = caraml(options)
@@ -35,8 +37,11 @@ users({ username: 'alladin' }) // = /users/alladin as /users/{username}
 // ..or without in non-ambiguous cases
 users(42) // = /users/42
 
+// The above can be combined to reach any resource
+users(42).messages(1).attachments // = /users/42/messages/1/attachments
+
 // Methods are functions that return promises
-const query = 'query string' || { query: 'parameters' }
+const query = 'query=string' || { query: 'parameters' }
 const data = { json: 'data' }
 // GET
 users.get(query, options)
@@ -52,6 +57,14 @@ users.patch(data, query, options)
 // DELETE
 users.delete(query, options)
 users.remove(query, options)
+
+// Methods are added automatically to resources
+users(42).messages.post(data) // = POST /users/42/messages
+
+// When collisions occur between method names and nested resources, the nested
+// resource can be obtained by prefixing with the overridePrefix
+users(42).$find.find(query) // = GET /users/42/find?query=string
+users(42).find(query) // = GET /users/42?query=string
 ```
 
 ## Examples
