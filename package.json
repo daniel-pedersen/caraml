@@ -1,6 +1,6 @@
 {
   "name": "caraml",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generate SDK from RAML documentation",
   "main": "dist/caraml.js",
   "repository": "daniel-pedersen/caraml",
