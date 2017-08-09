@@ -8,6 +8,7 @@ Install with: `npm install -S caraml` or `yarn add caraml`
 ```js
 import caraml from 'caraml'
 
+// ---------- OPTIONS ----------
 const options = {
   // Path to root RAML file
   apiPath: './api.raml',
@@ -23,6 +24,7 @@ const options = {
   overridePrefix: '$'
 }
 
+// ---------- RESOURCES ----------
 const { resources } = caraml(options)
 
 // The resources object contains the top-level RAML resources (lower cased)
@@ -31,15 +33,15 @@ const { users } = resources
 // Nested resources are properties of the parent resource
 users.me // = /users/me
 
-// Parameters are added by calling with an object
-users({ id: 42 }) // = /users/42 as /users/{id}
-users({ username: 'alladin' }) // = /users/alladin as /users/{username}
-// ..or without in non-ambiguous cases
+// Add uri-parameters by calling the resource with parameters
 users(42) // = /users/42
+users({ id: 42 }) // = /users/42 (route is /users/{id})
+users({ username: 'alladin' }) // = /users/alladin (route is /users/{username})
 
-// The above can be combined to reach any resource
+// Use above in combination to reach any resource
 users(42).messages(1).attachments // = /users/42/messages/1/attachments
 
+// ---------- METHODS ----------
 // Methods are functions that return promises
 const query = 'query=string' || { query: 'parameters' }
 const data = { json: 'data' }
@@ -58,11 +60,10 @@ users.patch(data, query, options)
 users.delete(query, options)
 users.remove(query, options)
 
-// Methods are added automatically to resources
+// Methods are available on resources according to spec
 users(42).messages.post(data) // = POST /users/42/messages
 
-// When collisions occur between method names and nested resources, the nested
-// resource can be obtained by prefixing with the overridePrefix
+// Prefix nested resources with overridePrefix when collisions occur
 users(42).$find.find(query) // = GET /users/42/find?query=string
 users(42).find(query) // = GET /users/42?query=string
 ```
