@@ -1,6 +1,6 @@
-const request = require('superagent')
+import request from 'superagent'
 
-module.exports = {
+export default {
   get ({ uri, headers, query }) {
     return request.set(headers).query(query).get(uri)
   },
