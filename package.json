@@ -1,6 +1,6 @@
 {
   "name": "caraml",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generate SDK from RAML documentation",
   "main": "dist/caraml.js",
   "repository": "daniel-pedersen/caraml",
@@ -9,18 +9,18 @@
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-polyfill": "^6.23.0",
-    "http-errors": "^1.6.1",
+    "http-errors": "^1.6.2",
     "lodash": "^4.17.4",
-    "raml-1-parser": "^1.1.26",
+    "raml-1-parser": "^1.1.29",
     "superagent": "^3.5.2",
-    "urijs": "^1.18.10"
+    "urijs": "^1.18.11"
   },
   "devDependencies": {
-    "ava": "^0.20.0",
+    "ava": "^0.21.0",
     "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.5.2",
-    "standard": "^10.0.2",
-    "testdouble": "^3.2.1"
+    "babel-preset-env": "^1.6.0",
+    "standard": "^10.0.3",
+    "testdouble": "^3.2.4"
   },
   "scripts": {
     "prepublish": "babel src -d dist",
